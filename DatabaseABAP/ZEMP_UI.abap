@@ -1,0 +1,13 @@
+REPORT ZEMP_UI.
+
+PARAMETERS: p_EMPID TYPE ZEMP-EMPID.
+
+DATA: tb_emp TYPE ZEMP.
+
+START-OF-SELECTION.
+  SELECT SINGLE * FROM ZEMP INTO tb_emp WHERE EMPID = p_EMPID.
+  IF sy-subrc = 0.
+   WRITE: / 'found',tb_emp-EMPID ,tb_emp-ENAME , tb_emp-DEPT.
+  ELSE.
+   WRITE: / 'not found'.
+  ENDIF.
